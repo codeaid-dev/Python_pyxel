@@ -83,7 +83,7 @@ class App:
         if self.goal:
             pyxel.circ(self.player.x*8+4, self.player.y*8+4, 4, 8)
             pyxel.text(72, 76, "GOAL!!", 3)
-            pyxel.text(62, 82, f"{self.passed:.0f} Seconds", 8)
+            pyxel.text(62, 82, f"{self.passed:.0f} Seconds", 3)
 
     # アプリを更新する
     def update(self):
