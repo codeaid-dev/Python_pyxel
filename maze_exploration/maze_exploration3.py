@@ -2,6 +2,7 @@ import pyxel
 import time
 
 GAME_TITLE = "Maze Exploration"  # ゲームタイトル
+WIDTH, HEIGHT = 168, 168
 
 class Sprite:
     def __init__(self):
@@ -13,7 +14,7 @@ class Sprite:
 class App:
     def __init__(self):
         # Pyxelを初期化する
-        pyxel.init(168, 168, title=GAME_TITLE, fps=10)
+        pyxel.init(WIDTH, HEIGHT, title=GAME_TITLE, fps=10)
 
         # リソースファイルを読み込む
         pyxel.load("resource.pyxres")
@@ -82,8 +83,13 @@ class App:
     def draw_goal(self):
         if self.goal:
             pyxel.circ(self.player.x*8+4, self.player.y*8+4, 4, 8)
-            pyxel.text(72, 76, "GOAL!!", 3)
-            pyxel.text(62, 82, f"{self.passed:.0f} Seconds", 3)
+            goal = "GOAL!!"
+            x = (WIDTH/2) - (len(goal)*4/2)
+            y = HEIGHT/2 - 5
+            pyxel.text(x, y, goal, 3)
+            passedtime = f"{self.passed:.0f} Seconds"
+            x = (WIDTH/2) - (len(passedtime)*4/2)
+            pyxel.text(x, y+6, passedtime, 3)
 
     # アプリを更新する
     def update(self):
@@ -122,10 +128,14 @@ class App:
     # タイトルを描画する
     def draw_title(self):
         pyxel.cls(0)
+        x = (WIDTH/2) - (len(GAME_TITLE)*4/2)
+        y = HEIGHT/2 - 5
         for i in range(1, -1, -1):
             color = 10 if i == 0 else 8
-            pyxel.text(52, 50 + i, GAME_TITLE, color)
-        pyxel.text(46, 70, "- Press Enter Key -", 3)
+            pyxel.text(x, y + i, GAME_TITLE, color)
+        press = "- Press Enter Key -"
+        x = (WIDTH/2) - (len(press)*4/2)
+        pyxel.text(x, y+20, press, 3)
 
     # アプリを描画する
     def draw(self):
