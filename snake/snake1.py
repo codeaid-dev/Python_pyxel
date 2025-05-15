@@ -53,6 +53,7 @@ class App:
 
         if pyxel.btnp(pyxel.KEY_R):
             self.is_title = True
+            self.game_over = False
 
     def draw_snake(self):
         pyxel.cls(0)
@@ -64,6 +65,12 @@ class App:
                        yoko,
                        tate,
                        7)
+
+    def draw_game_over(self):
+        over = "GAME OVER"
+        x = WIDTH / 2 - (len(over)*4 / 2)
+        y = HEIGHT / 2 - 5
+        pyxel.text(x, y, over, 2)
 
     def draw_title(self): #タイトルを描画する
         pyxel.cls(0)
@@ -81,5 +88,7 @@ class App:
             self.draw_title()
         else: #ゲーム画面を描画する
             self.draw_snake()
+            if self.game_over:
+                self.draw_game_over()
 
 App()
