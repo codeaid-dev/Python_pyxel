@@ -6,12 +6,12 @@ W, H = 20, 20 #画面マス数
 
 class App:
     def __init__(self):
-        pyxel.init(WIDTH, HEIGHT, title=GAME_TITLE, fps=10)
+        pyxel.init(WIDTH, HEIGHT, title=GAME_TITLE, fps=5)
         self.is_title = True
-        self.game_over = False
         pyxel.run(self.update, self.draw)
 
     def reset_game(self):
+        self.game_over = False
         self.snake = []
         self.head=(int(W/2),int(H/2))
         self.snake.append(self.head)
@@ -53,7 +53,6 @@ class App:
 
         if pyxel.btnp(pyxel.KEY_R):
             self.is_title = True
-            self.game_over = False
 
     def draw_snake(self):
         pyxel.cls(0)
